@@ -21,7 +21,6 @@ export default function Header() {
         <nav className={styles.navigation} aria-label="Navigation principale">
           <a className={styles.activeLink} href="index.html" aria-current="page">Accueil</a>
           <a className={styles.activeLink} href="favoris.html" aria-current="page">Favoris</a>
-          <a className={styles.activeLink} href="add.html" aria-current="page">Publier</a>
 
           <form className={styles.search} onSubmit={handleSubmit}>
             <input

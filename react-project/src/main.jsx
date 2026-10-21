@@ -4,6 +4,7 @@ import './index.css'
 import App from './App.jsx'
 import Feed from './pages/Feed/Feed.jsx'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App >

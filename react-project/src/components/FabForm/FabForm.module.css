@@ -1,0 +1,110 @@
+.section {
+  padding: 32px 0 48px;
+  background: #f4f7fb;
+}
+
+.form {
+  width: min(calc(100% - 48px), 900px);
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 24px;
+  border: 1px solid #e2e8f1;
+  border-radius: 14px;
+  background: #fff;
+  color: #17243b;
+  box-shadow: 0 3px 12px rgb(25 48 86 / 4%);
+}
+
+.title {
+  margin: 0 0 20px;
+  color: #14213a;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.fields {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  margin-top: 4px;
+  color: #35445a;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid #dce3ed;
+  border-radius: 8px;
+  background: #fff;
+  color: #17243b;
+  font: inherit;
+  resize: vertical;
+}
+
+.input::placeholder {
+  color: #8a96a8;
+}
+
+.input:focus {
+  border-color: #2864e8;
+  outline: 2px solid #2864e833;
+  outline-offset: 1px;
+}
+
+.button {
+  justify-self: start;
+  min-height: 40px;
+  margin-top: 8px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #2864e8;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #1748b8;
+}
+
+.button:focus-visible {
+  outline: 2px solid #17243b;
+  outline-offset: 3px;
+}
+
+.form small {
+  color: #718097;
+}
+
+.error,
+.success {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.error {
+  color: #b42318;
+}
+
+.success {
+  color: #18794e;
+}
+
+.button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: calc(100% - 28px);
+    padding: 18px;
+  }
+}

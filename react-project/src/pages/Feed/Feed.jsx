@@ -1,4 +1,5 @@
 import Posts from "../../components/Posts/Posts.jsx"
+import FabForm from "../../components/FabForm/FabForm.jsx"
 import { readPosts } from '../../api/dummyJSON.js'
 import { useEffect, useState } from 'react'
 import styles from './Feed.module.css'
@@ -9,6 +10,22 @@ export default function Feed() {
   const [posts, setPosts] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
+
+  //==========
+  function handlePostCreated(post) {
+    const formattedPost = {
+      id: post.id,
+      title: post.title ?? 'Titre inconnu',
+      body: post.body ?? 'Contenu inconnu',
+      tags: post.tags ?? [],
+      reactions: post.reactions ?? { likes: 0, dislikes: 0 },
+      views: post.views ?? 0,
+      userId: post.userId ?? 0,
+    }
+
+    setPosts((currentPosts) => [formattedPost, ...currentPosts])
+  }
+  //==================
 
   useEffect(() => {
     async function loadPosts() {
@@ -61,6 +78,9 @@ export default function Feed() {
         <div className={styles.posts}>
           {posts.map((post) => <Posts key={post.id} post={post} />)}
         </div>
+        
+{/*================================================*/}
+        <FabForm onPostCreated={handlePostCreated} />
       </section>
     </main>
   )
