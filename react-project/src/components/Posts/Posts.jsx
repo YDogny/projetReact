@@ -1,18 +1,36 @@
+import styles from './Posts.module.css'
+
 export default function Posts({ post }) {
   return (
-    <article>
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-        {/* Affiche les tags du post sous forme de hashtags */}
-        {post.tags.map((tag, i) => (
-            <span key={i}>#{tag}</span>
-        ))}
+    <article className={styles.post}>
+      <header className={styles.postHeader}>
+        <span className={styles.avatar} aria-hidden="true">S</span>
+        <div className={styles.author}>
+          <strong>Utilisateur {post.userId}</strong>
+        </div>
+      </header>
 
-        {/* Affiche chaque réaction (likes, dislikes, etc.) avec sa valeur */}
-        {Object.entries(post.reactions).map(([key, value]) => (
-            <span key={key}>{key}: {value}</span>
-        ))}   
-        <span>Vue: {post.views}</span>
+      <div className={styles.content}>
+        <h2>{post.title}</h2>
+        <p>{post.body}</p>
+      </div>
+
+      {post.tags.length > 0 && (
+        <ul className={styles.tags} aria-label="Tags">
+          {post.tags.map((tag) => <li key={tag}>#{tag}</li>)}
+        </ul>
+      )}
+
+      <footer className={styles.engagement}>
+        <div className={styles.reactions}>
+          {Object.entries(post.reactions).map(([key, value]) => (
+            <span key={key}>
+              <strong>{value}</strong> {key === 'likes' ? 'J’aime' : key}
+            </span>
+          ))}
+        </div>
+        <span className={styles.views}>{post.views} vues</span>
+      </footer>
     </article>
   )
 }

@@ -1,0 +1,64 @@
+.feed {
+  min-height: calc(100vh - 140px);
+  padding: 44px 24px 72px;
+  background: #f4f7fb;
+  color: #17243b;
+}
+
+.column {
+  width: min(100%, 700px);
+  margin: 0 auto;
+}
+
+.heading {
+  margin-bottom: 24px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #2864e8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.heading h1 {
+  margin: 0;
+  color: #14213a;
+  font-size: clamp(1.7rem, 4vw, 2.25rem);
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: #718097;
+  font-size: 0.95rem;
+}
+
+.posts {
+  display: grid;
+  gap: 16px;
+}
+
+.notice,
+.error {
+  margin: 0 0 16px;
+  padding: 18px 20px;
+  border: 1px solid #e2e8f1;
+  border-radius: 12px;
+  background: #fff;
+  color: #64748b;
+}
+
+.error {
+  border-color: #fecaca;
+  background: #fff7f7;
+  color: #b42318;
+}
+
+@media (max-width: 600px) {
+  .feed {
+    min-height: calc(100vh - 120px);
+    padding: 28px 14px 48px;
+  }
+}

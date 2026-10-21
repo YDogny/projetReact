@@ -1,0 +1,34 @@
+.footer {
+  padding: 0 24px;
+  border-top: 1px solid #dce3ed;
+  background: #eaf0f7;
+  color: #526176;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.footer p {
+  width: min(100%, 1100px);
+  min-height: 68px;
+  display: block;
+  box-sizing: border-box;
+  padding: 22px 0;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.footer a {
+  color: inherit;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 0 16px;
+  }
+
+  .footer p {
+    min-height: 60px;
+    font-size: 0.88rem;
+  }
+}

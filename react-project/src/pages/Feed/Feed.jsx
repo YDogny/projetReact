@@ -1,6 +1,7 @@
 import Posts from "../../components/Posts/Posts.jsx"
 import { readPosts } from '../../api/dummyJSON.js'
 import { useEffect, useState } from 'react'
+import styles from './Feed.module.css'
 
 export default function Feed() {
 
@@ -8,10 +9,6 @@ export default function Feed() {
   const [posts, setPosts] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-
-
-
-
 
   useEffect(() => {
     async function loadPosts() {
@@ -46,20 +43,25 @@ export default function Feed() {
   }, [])
 
 
-
-
-
   return (
-    <main>
-        <section>
-          {loading && <p>Chargement des posts…</p>}
-          {error && <p role="alert">{error}</p>}
-          {posts.map((post) => (
-            <article key={post.id}>
-                <Posts post={post} />
-            </article>
-          ))}
-        </section>
+    <main className={styles.feed}>
+      <section className={styles.column} aria-label="Fil d’actualité">
+        <header className={styles.heading}>
+          <p className={styles.eyebrow}>SoFeed React</p>
+          <h1>Fil d’actualité</h1>
+          <p className={styles.subtitle}>Les idées et publications de la communauté.</p>
+        </header>
+
+        {loading && <p className={styles.notice}>Chargement des publications…</p>}
+        {error && <p className={styles.error} role="alert">{error}</p>}
+        {!loading && !error && posts.length === 0 && (
+          <p className={styles.notice}>Aucune publication à afficher pour le moment.</p>
+        )}
+
+        <div className={styles.posts}>
+          {posts.map((post) => <Posts key={post.id} post={post} />)}
+        </div>
+      </section>
     </main>
   )
 }
