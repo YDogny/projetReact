@@ -1,11 +1,14 @@
 import './App.css'
+import Header from './components/Header/Header.jsx'
+import Footer from './components/Footer/Footer.jsx'
 
-function App() {
+export default function App({ children, showHeader = true }) {
 
   return (
     <>
+      {showHeader && <Header />}
+      {children}
+      <Footer />
     </>
   )
 }
-
-export default App
