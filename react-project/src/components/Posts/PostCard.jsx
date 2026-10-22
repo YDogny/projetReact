@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import styles from '../../components/Posts/Posts.module.css'
+import styles from './Posts.module.css'
 
 export default function PostCard({ post, showDetailsLink = true, showMetrics = false }) {
   return (

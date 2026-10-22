@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import PostCard from '../../components/Posts/PostCard.jsx'
 import { fetchPostById } from '../../api/postsApi.js'
-import PostCard from '../../features/posts/PostCard.jsx'
 import { normalizePost } from '../../features/posts/normalizePost.js'
 import feedStyles from '../Feed/Feed.module.css'
 

@@ -1,8 +1,8 @@
 import FabForm from '../../components/FabForm/FabForm.jsx'
+import PostCard from '../../components/Posts/PostCard.jsx'
+import PostSkeleton from '../../components/Posts/PostSkeleton.jsx'
 import { createPost, fetchPosts } from '../../api/postsApi.js'
-import PostCard from '../../features/posts/PostCard.jsx'
 import { normalizePost } from '../../features/posts/normalizePost.js'
-import PostSkeleton from '../../features/posts/PostSkeleton.jsx'
 import { useEffect, useState } from 'react'
 import styles from './Feed.module.css'
 
