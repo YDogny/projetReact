@@ -73,3 +73,58 @@
   }
 
 }
+
+.filters {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid #e2e8f1;
+  border-radius: 12px;
+  background: white;
+}
+
+.filters label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.filters input,
+.filters select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #dce3ed;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.pagination button,
+.error button {
+  padding: 10px 14px;
+  border: 1px solid #2864e8;
+  border-radius: 8px;
+  background: #2864e8;
+  color: white;
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 420px) {
+  .pagination {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

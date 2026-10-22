@@ -143,3 +143,24 @@
     transform: none;
   }
 }
+
+.favoriteButton {
+  align-self: flex-start;
+  margin: 8px 0 12px;
+  padding: 8px 12px;
+  border: 1px solid #dce3ed;
+  border-radius: 8px;
+  background: #f0f5ff;
+  color: #2864e8;
+  font: inherit;
+  cursor: pointer;
+}
+
+.favoriteButton:hover {
+  background: #dce8ff;
+}
+
+.favoriteButton:focus-visible {
+  outline: 2px solid #2864e8;
+  outline-offset: 2px;
+}

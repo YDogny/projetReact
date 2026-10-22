@@ -18,8 +18,8 @@ async function readJsonResponse(response, errorMessage) {
 }
 
 export async function fetchPosts() {
-  const response = await fetch(getApiUrl())
-  const data = await readJsonResponse(response, 'Erreur lors de la récupération des posts')
+const response = await fetch(getApiUrl('?limit=0'))
+const data = await readJsonResponse(response, 'Erreur lors de la récupération des posts')
 
   return data.posts ?? []
 }
