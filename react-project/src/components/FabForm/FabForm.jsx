@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styles from "./FabForm.module.css";
-import { addPosts } from '../../api/dummyJSON.js'
 
 export default function FabForm({ onPostCreated }) {
   const [title, setTitle] = useState("");
@@ -24,8 +23,11 @@ export default function FabForm({ onPostCreated }) {
 
     setLoading(true);
     try {
-      const createdPost = await addPosts(title.trim(), body.trim(), postTags);
-      onPostCreated(createdPost);
+      await onPostCreated({
+        title: title.trim(),
+        body: body.trim(),
+        tags: postTags,
+      });
       setTitle("");
       setBody("");
       setTags("");

@@ -1,85 +1,72 @@
-import Posts from "../../components/Posts/Posts.jsx"
-import FabForm from "../../components/FabForm/FabForm.jsx"
-import { readPosts } from '../../api/dummyJSON.js'
+import FabForm from '../../components/FabForm/FabForm.jsx'
+import { createPost, fetchPosts } from '../../api/postsApi.js'
+import PostCard from '../../features/posts/PostCard.jsx'
+import { normalizePost } from '../../features/posts/normalizePost.js'
+import PostSkeleton from '../../features/posts/PostSkeleton.jsx'
 import { useEffect, useState } from 'react'
 import styles from './Feed.module.css'
 
 export default function Feed() {
-
-
   const [posts, setPosts] = useState([])
   const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
-  //==========
-  function handlePostCreated(post) {
-    const formattedPost = {
-      id: post.id,
-      title: post.title ?? 'Titre inconnu',
-      body: post.body ?? 'Contenu inconnu',
-      tags: post.tags ?? [],
-      reactions: post.reactions ?? { likes: 0, dislikes: 0 },
-      views: post.views ?? 0,
-      userId: post.userId ?? 0,
-    }
-
-    setPosts((currentPosts) => [formattedPost, ...currentPosts])
+  async function handlePostCreated(postData) {
+    const createdPost = await createPost(postData)
+    setPosts((currentPosts) => [normalizePost(createdPost), ...currentPosts])
   }
-  //==================
 
   useEffect(() => {
+    let cancelled = false
+
     async function loadPosts() {
-        setLoading(true)
-        setError(null)
+      setLoading(true)
+      setError(null)
 
-        try {
-          const data = await readPosts()
-          const results = data.posts ?? []
-          const formattedPosts = results.map((post) => ({
-            id: post.id,
-            title: post.title ?? 'Titre inconnu',
-            body: post.body ?? 'Contenu inconnu',
-            tags: post.tags ?? [],
-            reactions: post.reactions ?? {"likes": 0, "dislikes": 0},
-            views: post.views ?? 0,
-            userId: post.userId ?? 0,
-          }))
-
-          setPosts(formattedPosts)
-        } catch (err) {
-
+      try {
+        const data = await fetchPosts()
+        if (!cancelled) {
+          setPosts(data.map(normalizePost))
+        }
+      } catch (err) {
+        if (!cancelled) {
           setError(err instanceof Error ? err.message : 'Erreur inconnue')
-
-        } finally {
-
+        }
+      } finally {
+        if (!cancelled) {
           setLoading(false)
         }
-
+      }
     }
-    loadPosts()
-  }, [])
 
+    loadPosts()
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   return (
     <main className={styles.feed}>
       <section className={styles.column} aria-label="Fil d’actualité">
-        <header className={styles.heading}>
+        <div className={styles.heading}>
           <p className={styles.eyebrow}>SoFeed React</p>
           <h1>Fil d’actualité</h1>
           <p className={styles.subtitle}>Les idées et publications de la communauté.</p>
-        </header>
+        </div>
 
-        {loading && <p className={styles.notice}>Chargement des publications…</p>}
+        {loading && <p className={styles.visuallyHidden} role="status">Chargement des publications…</p>}
         {error && <p className={styles.error} role="alert">{error}</p>}
         {!loading && !error && posts.length === 0 && (
           <p className={styles.notice}>Aucune publication à afficher pour le moment.</p>
         )}
 
-        <div className={styles.posts}>
-          {posts.map((post) => <Posts key={post.id} post={post} />)}
+        <div className={styles.posts} aria-busy={loading}>
+          {loading
+            ? <PostSkeleton />
+            : posts.map((post) => <PostCard key={post.id} post={post} />)}
         </div>
-        
-{/*================================================*/}
+
         <FabForm onPostCreated={handlePostCreated} />
       </section>
     </main>
