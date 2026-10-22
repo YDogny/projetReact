@@ -1,17 +1,17 @@
 # SoFeed React
 
-SoFeed est un projet de réseau social réalisé avec React. Il affiche un fil de publications récupérées depuis l'API publique [DummyJSON](https://dummyjson.com/).
+SoFeed est une application de réseau social réalisée avec React. Elle affiche un fil de publications provenant de l'API [DummyJSON](https://dummyjson.com/), avec une page de détail pour chaque publication et un formulaire de création.
 
 ## Prérequis
 
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/) 20.19 ou supérieur (ou 22.12 ou supérieur)
-- npm, fourni avec Node.js
-- Une connexion Internet pour accéder à l'API DummyJSON
+- Git
+- Node.js 20.19 ou supérieur, ou 22.12 ou supérieur
+- npm
+- Une connexion Internet pour accéder à DummyJSON
 
 ## Installation et lancement
 
-Depuis un terminal, clonez le dépôt puis placez-vous dans le dossier de l'application :
+Depuis un terminal, clonez le dépôt et placez-vous dans le dossier de l'application :
 
 ```bash
 git clone https://github.com/YDogny/projetReact.git
@@ -20,42 +20,40 @@ npm install
 npm run dev
 ```
 
-Ouvrez ensuite dans votre navigateur l'adresse locale indiquée par Vite dans le terminal.
+Ouvrez ensuite l'adresse locale indiquée par Vite dans le terminal.
 
 ## Configuration
 
-L'application utilise la variable d'environnement `VITE_API_URL` pour connaître l'adresse de l'API. Dans le dossier `react-project`, créez un fichier `.env` contenant :
+Dans `react-project`, créez un fichier `.env` avec les variables suivantes :
 
 ```env
 VITE_API_URL=https://dummyjson.com/posts
+VITE_API_IMG=https://dummyjson.com/image/400x200/008080/ffffff?text=
 ```
 
-Le fichier `.env` est ignoré par Git ; il n'est pas nécessaire de le publier. Après toute modification de cette variable, redémarrez le serveur de développement.
+`VITE_API_URL` définit l'URL de l'API des publications. `VITE_API_IMG` définit l'URL de base des images affichées dans le fil. Le fichier `.env` est ignoré par Git. Redémarrez le serveur de développement après toute modification de ces variables.
 
-## API et choix techniques
+## Fonctionnalités
 
-- **API :** DummyJSON, endpoint `https://dummyjson.com/posts`.
-- **Interface :** React avec des composants fonctionnels et des hooks (`useState`, `useEffect`).
-- **Outil de développement et de build :** Vite.
-- **Styles :** CSS et CSS Modules pour certains composants.
-- **Qualité du code :** Oxlint.
+- Chargement et affichage des publications, avec titre, contenu, tags, réactions et nombre de vues.
+- États de chargement et affichage des erreurs de récupération.
+- Page de détail accessible depuis chaque publication.
+- Formulaire pour créer une publication avec un titre, un contenu et des tags.
+- Navigation vers les pages d'accueil et des favoris.
 
-## Fonctionnalités réalisées
+L'API de DummyJSON simule la création d'une publication : elle apparaît dans le fil courant, mais n'est pas enregistrée durablement par l'API. La page des favoris, les profils utilisateurs et les fonctions de modification ou de suppression ne sont pas implémentés. L'application nécessite une connexion Internet et dépend de la disponibilité de DummyJSON. Aucun lien de déploiement n'est disponible pour le moment.
 
-- Récupération des publications depuis DummyJSON.
-- Affichage du titre, du texte, des tags, des réactions et du nombre de vues.
-- Affichage des états de chargement et des erreurs de récupération.
+## Choix techniques
 
-## Limites et fonctionnalités non réalisées
-
-- Les pages de profil utilisateur et l'affichage de toutes les publications d'un utilisateur ne sont pas encore implémentés.
-- La création, la modification et la suppression de publications ne sont pas disponibles.
-- L'application dépend de la disponibilité de DummyJSON et d'une connexion Internet.
-- Aucun lien de déploiement n'est disponible pour le moment.
+- React avec des composants fonctionnels et des hooks (`useState`, `useEffect`).
+- React Router pour la navigation.
+- Vite pour le développement et la compilation.
+- CSS et CSS Modules pour les styles.
+- Oxlint pour l'analyse du code.
 
 ## Vérifications
 
-Depuis le dossier `react-project`, vous pouvez lancer :
+Depuis le dossier `react-project`, exécutez :
 
 ```bash
 npm run lint
@@ -66,43 +64,8 @@ npm run build
 
 - **ChatGPT :** aide à comprendre les consignes et le code, explications, commentaires et assistance à la programmation.
 - **Stitch :** exploration d'une proposition de direction visuelle pour un réseau social avec un fil de publications et des profils.
-- **GiHub Copilot :** style du site, réalisation du README, aide pour le reperage et la correction des bugs.
+- **GitHub Copilot :** aide au style du site, à la rédaction du README, au repérage et à la correction des bugs, petit accident lors de son utilisation(modification integrale de la structure par accident).
 
 ## Dépôt
 
 [github.com/YDogny/projetReact](https://github.com/YDogny/projetReact)
-
-
-
-
-## Livrables
-
-Le projet doit être déposé sur GitHub. Le lien du dépôt doit être rendu sur Cesar.
-
-Le dépôt doit contenir le code source et un README précisant :
-
-- Le sujet du projet et l'API utilisée ;
-    (reseau social avec post et users, DummyJSON)
-
-- Les prérequis et les commandes d'installation et de lancement ;
-    (git clone https://github.com/YDogny/projetReact.git, cd react-porject, npm install, npm run dev)
-
-- La configuration nécessaire, notamment les éventuelles variables d'environnement ;
-    (pas compris et je sais pas)
-
-- Les principaux choix techniques et les bibliothèques utilisées ;
-
-- Les fonctionnalités réalisées, les bonus et les limites ou problèmes connus ;
-
-- Les outils d'IA utilisés et leurs usages, ou l'absence d'utilisation de l'IA ;
-    (ChatGPT faire un exo, m'explique, mettre des commentaires, coder)
-    
-    stitch : A social media  with posts and users (the datas will come from dummyJSON) i want something pofessional without too much things on the screen (for the index , all the post like one under the others and when i clik on the name i kan see is profil with every post i ever did)
-
-
-- Le lien de l'application déployée, si vous réalisez le bonus de publication.
-    ()
-
-
-Le projet doit pouvoir être installé et lancé en suivant uniquement les instructions du README.
-
