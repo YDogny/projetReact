@@ -40,6 +40,16 @@
   gap: 16px;
 }
 
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
 .notice,
 .error {
   margin: 0 0 16px;
@@ -61,4 +71,5 @@
     min-height: calc(100vh - 120px);
     padding: 28px 14px 48px;
   }
+
 }

@@ -1,4 +1,8 @@
 .post {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 216px;
+  flex-direction: column;
   overflow: hidden;
   padding: 20px 22px 0;
   border: 1px solid #e6ebf2;
@@ -24,6 +28,7 @@
   width: 40px;
   height: 40px;
   flex: 0 0 40px;
+  object-fit: cover;
   place-items: center;
   border-radius: 50%;
   background: #e9f0ff;
@@ -50,6 +55,7 @@
 }
 
 .content {
+  flex: 1;
   padding: 18px 0 8px;
 }
 
@@ -92,6 +98,7 @@
   justify-content: space-between;
   gap: 12px;
   min-height: 48px;
+  margin-top: auto;
   border-top: 1px solid #edf0f5;
   color: #718097;
   font-size: 0.78rem;
@@ -114,6 +121,7 @@
 
 @media (max-width: 420px) {
   .post {
+    min-height: 236px;
     padding: 16px 16px 0;
   }
 
