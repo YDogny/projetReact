@@ -6,6 +6,8 @@ import { normalizePost } from '../../features/posts/normalizePost.js'
 import { useEffect, useState } from 'react'
 import styles from './Feed.module.css'
 import { usePostsContext } from '../../context/PostsContext.jsx'
+import FeedFilters from '../../components/FeedFilters/FeedFilters.jsx'
+import Pagination from '../../components/Pagination/Pagination.jsx'
 
 const POSTS_PER_PAGE = 10
 
@@ -14,7 +16,7 @@ export default function Feed() {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const {search, updateSearch, selectedTag, updateSelectedTag, minLikes, updateMinLikes, page, setPage} = usePostsContext()
+  const {search, selectedTag, minLikes, page, setPage} = usePostsContext()
 
   const filteredPosts = posts.filter((post) => {
     const query = search.trim().toLowerCase()
@@ -51,6 +53,7 @@ export default function Feed() {
   async function handlePostCreated(postData) {
     const createdPost = await createPost(postData)
     setPosts((currentPosts) => [normalizePost(createdPost), ...currentPosts])
+    setPage(1)
   }
 
   useEffect(() => {
@@ -83,105 +86,53 @@ export default function Feed() {
     }
   }, [])
 
+  function changePage(newPage) {
+    setPage(newPage)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <main className={styles.feed}>
-      <section className={styles.column} aria-label="Fil d’actualité">
-        <div className={styles.heading}>
-          <p className={styles.eyebrow}>SoFeed React</p>
-          <h1>Fil d’actualité</h1>
-          <p className={styles.subtitle}>Les idées et publications de la communauté.</p>
-        </div>
+    <div className={styles.layout}>
+        <section className={styles.column} aria-label="Fil d’actualité">
+          <div className={styles.heading}>
+            <p className={styles.eyebrow}>SoFeed React</p>
+            <h1>Fil d’actualité</h1>
+            <p className={styles.subtitle}>Les idées et publications de la communauté.</p>
+          </div>
 
-        <div className={styles.filters}>
-          <label htmlFor="search-posts">
-            Rechercher une publication
-          </label>
+          <FeedFilters availableTags={availableTags} />
 
-          <input
-            id="search-posts"
-            type="search"
-            placeholder="Rechercher dans les titres et contenus"
-            value={search}
-            onChange={(e) => updateSearch(e.target.value)}
-          />
+          {loading && <p className={styles.visuallyHidden} role="status">Chargement des publications…</p>}
+          {error && <p className={styles.error} role="alert">{error}</p>}
+          {!loading && !error && filteredPosts.length === 0 && (
+            <p className={styles.notice}>
+              Aucune publication ne correspond à ta recherche.
+            </p>
+          )}
 
-          <label htmlFor="filter-tag">
-            Filtrer par tag
-          </label>
-
-          <select
-            id="filter-tag"
-            value={selectedTag}
-            onChange={(e) => updateSelectedTag(e.target.value)}
-          >
-            <option value="">Tous les tags</option>
-
-            {availableTags.map((tag) => (
-              <option key={tag} value={tag}>
-                {tag}
-              </option>
+          <div className={styles.posts} aria-busy={loading}>
+            {loading
+              ? <PostSkeleton />
+              : !error && visiblePosts.map((post) => (
+                  <PostCard key={post.id} post={post} />
             ))}
-          </select>
+          </div>
 
-          <label htmlFor="filter-likes">
-            Nombre minimum de likes
-          </label>
+          {!loading && !error && (
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={changePage}
+            />
+          )}
 
-          <select
-            id="filter-likes"
-            value={minLikes}
-            onChange={(e) => updateMinLikes(e.target.value)}
-          >
-            <option value="all">Tous</option>
-            <option value="10">10 likes minimum</option>
-            <option value="50">50 likes minimum</option>
-            <option value="100">100 likes minimum</option>
-          </select>
-        </div>
+        </section>
 
-
-        {loading && <p className={styles.visuallyHidden} role="status">Chargement des publications…</p>}
-        {error && <p className={styles.error} role="alert">{error}</p>}
-        {!loading && !error && filteredPosts.length === 0 && (
-          <p className={styles.notice}>
-            Aucune publication ne correspond à ta recherche.
-          </p>
-        )}
-
-        <div className={styles.posts} aria-busy={loading}>
-          {loading
-            ? <PostSkeleton />
-            : !error && visiblePosts.map((post) => (
-                <PostCard key={post.id} post={post} />
-          ))}
-        </div>
-
-        {!loading && !error && totalPages > 1 && (
-          <nav className={styles.pagination} aria-label="Pagination">
-            <button
-              type="button"
-              disabled={currentPage === 1}
-              onClick={() => setPage(currentPage - 1)}
-            >
-              Précédent
-            </button>
-
-            <span>
-              Page {currentPage} sur {totalPages}
-            </span>
-
-            <button
-              type="button"
-              disabled={currentPage === totalPages}
-              onClick={() => setPage(currentPage + 1)}
-            >
-              Suivant
-            </button>
-          </nav>
-        )}
-
-        <FabForm onPostCreated={handlePostCreated} />
-      </section>
+        <aside className={styles.sidebar} aria-label="Créer une publication">
+          <FabForm onPostCreated={handlePostCreated} />
+        </aside>
+      </div>
     </main>
   )
 }

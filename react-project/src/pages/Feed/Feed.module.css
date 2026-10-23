@@ -5,9 +5,25 @@
   color: #17243b;
 }
 
-.column {
-  width: min(100%, 700px);
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 28px;
+  max-width: 1150px;
   margin: 0 auto;
+  align-items: start;
+}
+
+.column {
+  width: 100%;
+  min-width: 0;
+}
+
+
+.sidebar {
+  min-width: 0;
+  position: sticky;
+  top: 100px;
 }
 
 .heading {
@@ -64,6 +80,16 @@
   border-color: #fecaca;
   background: #fff7f7;
   color: #b42318;
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
 }
 
 @media (max-width: 600px) {

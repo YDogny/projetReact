@@ -1,71 +1,92 @@
 # SoFeed React
 
-SoFeed est une application de réseau social réalisée avec React. Elle affiche un fil de publications provenant de l'API [DummyJSON](https://dummyjson.com/), avec une page de détail pour chaque publication et un formulaire de création.
+Application de réseau social réalisée avec React et Vite, basée sur l'API publique [DummyJSON](https://dummyjson.com/). Le projet est actuellement fonctionnel en local et couvre le cœur d'un fil d'actualité : lecture, recherche, filtres, pagination, favoris persistants et création de publication.
+
+## Statut actuel
+
+Le projet est en état de MVP fonctionnel.
+
+Fonctionnalités actuellement implémentées :
+- fil d'actualité avec cartes de publication
+- page de détail pour chaque publication
+- recherche textuelle
+- filtres par tag et nombre minimum de likes
+- pagination sur les résultats filtrés
+- gestion des favoris avec persistance dans le localStorage
+- formulaire de création de publication avec validation côté client
+- navigation entre accueil, favoris et détail via React Router
+- interface responsive et chargement/erreurs gérés
+
+Ce qui n'est pas encore inclus dans l'état actuel :
+- mise à jour/suppression d'une publication via CRUD complet
+- profil utilisateur dédié
+- dark mode
+- déploiement public en ligne
+
+## Stack technique
+
+- React 19
+- Vite
+- React Router
+- CSS Modules
+- DummyJSON API
+- Oxlint pour la qualité de code
 
 ## Prérequis
 
-- Git
-- Node.js 20.19 ou supérieur, ou 22.12 ou supérieur
+- Node.js 20.19+ ou 22.12+
 - npm
-- Une connexion Internet pour accéder à DummyJSON
+- connexion Internet pour l'API DummyJSON
 
-## Installation et lancement
+## Installation
 
-Depuis un terminal, clonez le dépôt et placez-vous dans le dossier de l'application :
+Depuis le dépôt racine :
 
 ```bash
 git clone https://github.com/YDogny/projetReact.git
 cd projetReact/react-project
 npm install
-npm run dev
 ```
-
-Ouvrez ensuite l'adresse locale indiquée par Vite dans le terminal.
 
 ## Configuration
 
-Dans `react-project`, créez un fichier `.env` avec les variables suivantes :
+Créez un fichier `.env` dans `react-project` :
 
 ```env
 VITE_API_URL=https://dummyjson.com/posts
 VITE_API_IMG=https://dummyjson.com/image/400x200/008080/ffffff?text=
 ```
 
-`VITE_API_URL` définit l'URL de l'API des publications. `VITE_API_IMG` définit l'URL de base des images affichées dans le fil. Le fichier `.env` est ignoré par Git. Redémarrez le serveur de développement après toute modification de ces variables.
+Variables :
+- `VITE_API_URL` : base de l'API des publications
+- `VITE_API_IMG` : URL utilisée pour générer les visuels de publication
 
-## Fonctionnalités
+Le fichier `.env` est ignoré par Git.
 
-- Chargement et affichage des publications, avec titre, contenu, tags, réactions et nombre de vues.
-- États de chargement et affichage des erreurs de récupération.
-- Page de détail accessible depuis chaque publication.
-- Formulaire pour créer une publication avec un titre, un contenu et des tags.
-- Navigation vers les pages d'accueil et des favoris.
+## Lancement
 
-L'API de DummyJSON simule la création d'une publication : elle apparaît dans le fil courant, mais n'est pas enregistrée durablement par l'API. La page des favoris, les profils utilisateurs et les fonctions de modification ou de suppression ne sont pas implémentés. L'application nécessite une connexion Internet et dépend de la disponibilité de DummyJSON. Aucun lien de déploiement n'est disponible pour le moment.
+```bash
+npm run dev
+```
 
-## Choix techniques
+Ouvrez ensuite l'URL locale affichée par Vite dans le terminal.
 
-- React avec des composants fonctionnels et des hooks (`useState`, `useEffect`).
-- React Router pour la navigation.
-- Vite pour le développement et la compilation.
-- CSS et CSS Modules pour les styles.
-- Oxlint pour l'analyse du code.
-
-## Vérifications
-
-Depuis le dossier `react-project`, exécutez :
+## Vérification du projet
 
 ```bash
 npm run lint
 npm run build
 ```
 
-## Outils d'IA utilisés
+La validation actuelle passe sans erreur.
 
-- **ChatGPT :** aide à comprendre les consignes et le code, explications, commentaires et assistance à la programmation.
-- **Stitch :** exploration d'une proposition de direction visuelle pour un réseau social avec un fil de publications et des profils.
-- **GitHub Copilot :** aide au style du site, à la rédaction du README, au repérage et à la correction des bugs, petit accident lors de son utilisation(modification integrale de la structure par accident).
+## Notes fonctionnelles
+
+- Les publications créées via le formulaire apparaissent dans l'interface immédiatement, conformément au comportement simulé par DummyJSON.
+- Les favoris sont conservés dans le navigateur grâce au `localStorage`.
+- L'application dépend de la disponibilité de l'API DummyJSON et de la connexion Internet.
+- Aucun déploiement public n'est configuré pour le moment.
 
 ## Dépôt
 
-[github.com/YDogny/projetReact](https://github.com/YDogny/projetReact)
+https://github.com/YDogny/projetReact
