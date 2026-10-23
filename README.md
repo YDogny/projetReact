@@ -16,12 +16,12 @@ Fonctionnalités actuellement implémentées :
 - formulaire de création de publication avec validation côté client
 - navigation entre accueil, favoris et détail via React Router
 - interface responsive et chargement/erreurs gérés
+- déploiement public en ligne
 
 Ce qui n'est pas encore inclus dans l'état actuel :
 - mise à jour/suppression d'une publication via CRUD complet
 - profil utilisateur dédié
 - dark mode
-- déploiement public en ligne
 
 ## Stack technique
 
@@ -85,7 +85,7 @@ La validation actuelle passe sans erreur.
 - Les publications créées via le formulaire apparaissent dans l'interface immédiatement, conformément au comportement simulé par DummyJSON.
 - Les favoris sont conservés dans le navigateur grâce au `localStorage`.
 - L'application dépend de la disponibilité de l'API DummyJSON et de la connexion Internet.
-- Aucun déploiement public n'est configuré pour le moment.
+- Déploiement public = "https://projet-react-lilac.vercel.app/"
 
 ## Dépôt
 

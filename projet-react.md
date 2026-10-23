@@ -10,14 +10,10 @@ Vous devez utiliser l'api [DummyJSON](https://dummyjson.com/) pour faire ce proj
 
 ### Pages et navigation
 
-- Une page d'accueil avec un en-tête et une navigation permettant d'accéder à la liste et aux éléments sauvegardés ; ==============Bon
-
-- Une liste de plusieurs éléments, avec au minimum une image et trois informations textuelles pertinentes par carte. ================Bon
-
-- Une page de détail accessible depuis chaque carte, avec au moins cinq informations pertinentes sur l'élément, dont au moins deux qui ne figurent pas sur la carte ; =================Bon
-
-- Une page pour visualiser les éléments sauvegardés ; =============Bon
-
+- Une page d'accueil avec un en-tête et une navigation permettant d'accéder à la liste et aux éléments sauvegardés ; 
+- Une liste de plusieurs éléments, avec au minimum une image et trois informations textuelles pertinentes par carte. 
+- Une page de détail accessible depuis chaque carte, avec au moins cinq informations pertinentes sur l'élément, dont au moins deux qui ne figurent pas sur la carte ;
+- Une page pour visualiser les éléments sauvegardés ;
 - La page de détail et la page des éléments sauvegardés doivent avoir des URL distinctes. La navigation entre les pages doit se faire dans l'application. L'accès direct à une URL et le rechargement d'une page doivent fonctionner.
 
 ### Recherche, filtres et pagination
@@ -42,30 +38,21 @@ Pour le contexte React, vous pouvez consulter cette documentation : <https://rea
 
 ### Création d’un élément avec un formulaire
 
-- Un formulaire de création doit être accessible depuis l’application, avec des champs adaptés aux éléments manipulés : produit, recette, publication, etc. ; =============Bon
-
-- Les champs doivent être contrôlés avec React. Les champs obligatoires et les formats attendus doivent être vérifiés avant l’envoi, avec des messages de validation compréhensibles ; =A voir
-
-- La soumission doit envoyer une requête `POST` à l’endpoint de création correspondant dans DummyJSON, avec les données du formulaire au format JSON et le header `Content-Type: application/json` ; ==============Bon
-
-- Pendant l’envoi, affichez un indicateur et désactivez le bouton de soumission pour éviter les envois multiples ; ===============Bon
-
-- Vérifiez le succès de la réponse HTTP. En cas d’échec, affichez un message et permettez de réessayer sans perdre les valeurs saisies ; =A voir
-
-- En cas de succès, affichez une confirmation et les informations de l’élément créé à partir de la réponse de l’API. =A voir
+- Un formulaire de création doit être accessible depuis l’application, avec des champs adaptés aux éléments manipulés : produit, recette, publication, etc. ;
+- Les champs doivent être contrôlés avec React. Les champs obligatoires et les formats attendus doivent être vérifiés avant l’envoi, avec des messages de validation compréhensibles ;
+- La soumission doit envoyer une requête `POST` à l’endpoint de création correspondant dans DummyJSON, avec les données du formulaire au format JSON et le header `Content-Type: application/json` ;
+- Pendant l’envoi, affichez un indicateur et désactivez le bouton de soumission pour éviter les envois multiples ; 
+- Vérifiez le succès de la réponse HTTP. En cas d’échec, affichez un message et permettez de réessayer sans perdre les valeurs saisies ;
+- En cas de succès, affichez une confirmation et les informations de l’élément créé à partir de la réponse de l’API. 
 
 DummyJSON simule les créations, modifications et suppressions sans les enregistrer sur le serveur. Utilisez les réponses de l’API pour mettre à jour l’état local de l’interface ; ces changements n’ont pas à être conservés après un rechargement. Cette limite concerne aussi le bonus CRUD. Voir les exemples de [création, modification et suppression de produits](https://dummyjson.com/docs/products#products-add).
 
 ### Interface et gestion des états
 
-- L'interface doit être responsive et utilisable sur mobile comme sur ordinateur, sans débordement horizontal gênant ; ===============Bon
-
-- Un indicateur de chargement doit être affiché pendant la récupération des données ; =A voir
-
-- En cas d'échec d'une requête, un message compréhensible doit être affiché et l'utilisateur doit pouvoir réessayer ; =A voir
-
-- Un message adapté doit être affiché lorsqu'une recherche ne renvoie aucun résultat ou lorsqu'aucun élément n'a encore été sauvegardé ; =Pas sur
-
+- L'interface doit être responsive et utilisable sur mobile comme sur ordinateur, sans débordement horizontal gênant ; 
+- Un indicateur de chargement doit être affiché pendant la récupération des données ;
+- En cas d'échec d'une requête, un message compréhensible doit être affiché et l'utilisateur doit pouvoir réessayer ;
+- Un message adapté doit être affiché lorsqu'une recherche ne renvoie aucun résultat ou lorsqu'aucun élément n'a encore été sauvegardé ;
 - Les champs de formulaire doivent avoir des labels associés, les images informatives des textes alternatifs pertinents et les actions être accessibles au clavier avec un focus visible. =A verif
 
 ### Qualité du code
